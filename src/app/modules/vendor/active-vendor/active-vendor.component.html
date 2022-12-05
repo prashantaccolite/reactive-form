@@ -1,37 +1,57 @@
-<div class="container">
+<div class="container" >
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6" [formGroup]="user">
             <div class="mb-3">
                 <label for="fname" class="form-label">Name</label>
-                <input type="text" class="form-control" id="fname" placeholder="">
+                <input [ngClass]="{'red-box':nameFocused && !user.get('fname')?.valid}" 
+                formControlName="fname" type="text" class="form-control" 
+                (focusout)="setNameFocused()" id="fname" placeholder="">
+                <p class="error" 
+                *ngIf="nameFocused && !user.get('fname')?.valid">name is required</p>
             </div>
 
             <div class="mb-3">
                 <label for="username" class="form-label">Email</label>
-                <input type="email" class="form-control" id="username" placeholder="">
+                <input [ngClass]="{'red-box':usernameFocused && !user.get('username')?.valid}"
+                formControlName="username" type="email" class="form-control" 
+                (focusout)="setUsernameFocused()" id="username" placeholder="">
+                <p class="error" 
+                *ngIf="usernameFocused && !user.get('username')?.valid">username is required</p>
             </div>
 
             <div class="mb-3">
                 <label for="bio" class="form-label">Bio</label>
-                <textarea class="form-control" id="bio" rows="3"></textarea>
+                <textarea [ngClass]="{'red-box':bioFocused && !user.get('bio')?.valid}"
+                formControlName="bio" class="form-control" id="bio" 
+                (focusout)="setBioFocused()" rows="3"></textarea>
+                <p class="error" 
+                *ngIf="bioFocused && !user.get('bio')?.valid">bio is required</p>
             </div>
 
             <div class="mb-3">
-                <select class="form-select" aria-label="Default select example">
+                <select [ngClass]="{'red-box':domainFocused && !user.get('domain')?.valid}"
+                formControlName="domain" class="form-select" 
+                (focusout)="setDomainFocused()" aria-label="Default select example">
                     <option value="">Please Select Domain</option>
                     <option value="erp">ERP</option>
                     <option value="crm">CRM</option>
                     <option value="ecommerce">E-commerce</option>
+                
                 </select>
+                <p class="error" 
+                *ngIf="domainFocused && !user.get('domain')?.valid">domain is required</p>
             </div>
 
             <div class="mb-3">
-                <button type="button" class="btn btn-primary">Submit</button>
+                <button (click)="printObject()" type="button" [disabled]="!user.valid" class="btn btn-primary">Submit</button>
             </div>
         </div>
 
         <div class="col-md-6">
-            <h1>Object should be print here</h1>
+            <h1>Name: {{displayUser.name}} </h1>
+            <h1>Username: {{displayUser.username}}</h1>
+            <h1>Bio: {{displayUser.bio}}</h1>
+            <h1> Domain: {{displayUser.domain}}</h1>
         </div>
     </div>
 
