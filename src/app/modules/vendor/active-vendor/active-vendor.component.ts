@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-active-vendor',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActiveVendorComponent implements OnInit {
 
+  profileOutput:any;
+  hasSubmitted=false;
+  profileForm = new FormGroup({
+    name: new FormControl(''),
+    email: new FormControl(''),
+    bio: new FormControl(''),
+    domain: new FormControl('')
+  })
   constructor() { }
 
+  submit() {
+    console.warn(this.profileForm.value);
+    this.profileOutput = this.profileForm.value;
+    this.hasSubmitted = true;
+  }
+
   ngOnInit(): void {
+  }
+
+  FocusOut(formControl:any) {
+      console.log(formControl)
   }
 
 }
