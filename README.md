@@ -1,27 +1,7 @@
 # ReactiveForm
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.0.
+You are given an angular project in which ActiveVendorComponent has some input fields in its template. Integrate all these fields with Reactive Forms and consider all the fields are mandatory and submit button should be enabled only if all the fields are filled. Once you focus on any field and if the field is not filled, onfocusout, error message should be displayed on top right corner of field with red border around the field. Each field should should have its corresponding message(Name is required or Email is required). Once all the fields are filled, Submit button should be enabled on click of it, the form data should be displayed at the bottom with key value pairs(name : x , email : y).
 
-## How To Start
+At /vendor/active:
 
-1) Fork and Clone
-2) Run `npm i`
-3) Run `ng serve` and navigate to `http://localhost:4200/`
-
-## Task
-
-1) Integrate form with `Reactive` 
-2) Once page will load `Submit` button will be disabled
-3) Once you focus on any field and onFocusOut, `Red border` and `Message` will apply on fields. 
-4) Each fields will have seprate error message like 
-    * Name is required field
-    * email is required field
-5) Error message will display on `Top Right Corner` of the field  
-6) Once data will fill in all fields, `Submit` button will ebable
-7) We need to collect `latest` form data and will display right side of screen. it will be object with 4 key (name, email, bio, domain).
-
-## Reference 
-
-[Icon Bootstrap](https://icons.getbootstrap.com/)
-
-[Bootstrap](https://getbootstrap.com/docs/5.2/getting-started/introduction/)
+<img src="https://user-images.githubusercontent.com/117354904/205748266-acb0cea6-0b37-46b9-8267-898febb78e51.png" width=50% height=50%>
