@@ -1,23 +1,27 @@
 <div class="container">
-    <div class="row">
+    <div class="row" [formGroup]="userForm">
         <div class="col-md-6">
             <div class="mb-3">
-                <label for="fname" class="form-label">Name</label>
-                <input type="text" class="form-control" id="fname" placeholder="">
+                <label for="fname" class="form-label">Name</label> <span class="error" id="fnameError"></span>
+                <input type="text" class="form-control" id="fname" placeholder="" formControlName="name" (focusout)="focusOutName()">
+                
             </div>
 
             <div class="mb-3">
-                <label for="username" class="form-label">Email</label>
-                <input type="email" class="form-control" id="username" placeholder="">
+                <label for="email" class="form-label">Email</label> <span class="error" id="emailError"></span>
+                <input type="email" class="form-control" id="email" placeholder="" formControlName="email" (focusout)="focusOutEmail()">
+                
             </div>
 
             <div class="mb-3">
-                <label for="bio" class="form-label">Bio</label>
-                <textarea class="form-control" id="bio" rows="3"></textarea>
+                <label for="bio" class="form-label">Bio</label> <span class="error" id="bioError"></span>
+                <textarea class="form-control" id="bio" rows="3" formControlName="bio" (focusout)="focusOutBio()"></textarea>
+                
             </div>
 
             <div class="mb-3">
-                <select class="form-select" aria-label="Default select example">
+                <span class="error" id="domainError"></span>
+                <select class="form-select" id="domain" aria-label="Default select example" formControlName="domain" (focusout)="focusOutDomain()">
                     <option value="">Please Select Domain</option>
                     <option value="erp">ERP</option>
                     <option value="crm">CRM</option>
@@ -26,12 +30,18 @@
             </div>
 
             <div class="mb-3">
-                <button type="button" class="btn btn-primary">Submit</button>
+                
+                <button type="button" class="btn btn-primary" [ngClass]="{ 'disabled-class': !userForm.valid }"
+                (click)="submit()"
+                [disabled]="!userForm.valid">Submit</button>
             </div>
         </div>
 
-        <div class="col-md-6">
-            <h1>Object should be print here</h1>
+        <div class="col-md-6" >
+            <h1>Name: {{formObject.name}}</h1>
+            <h1>Email: {{formObject.email}}</h1>
+            <h1>Bio: {{formObject.bio}}</h1>
+            <h1>Domain: {{formObject.domain}}</h1>
         </div>
     </div>
 
