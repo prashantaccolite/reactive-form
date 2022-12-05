@@ -1,23 +1,23 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6" [formGroup]="profileForm">
             <div class="mb-3">
                 <label for="fname" class="form-label">Name</label>
-                <input type="text" class="form-control" id="fname" placeholder="">
+                <input type="text" class="form-control" id="fname" placeholder="" formControlName="name" required (focusout)="FocusOut(profileForm.get('text'))">
             </div>
 
             <div class="mb-3">
                 <label for="username" class="form-label">Email</label>
-                <input type="email" class="form-control" id="username" placeholder="">
+                <input type="email" class="form-control" id="username" placeholder="" formControlName="email" required>
             </div>
 
             <div class="mb-3">
                 <label for="bio" class="form-label">Bio</label>
-                <textarea class="form-control" id="bio" rows="3"></textarea>
+                <textarea class="form-control" id="bio" rows="3" formControlName="bio" required></textarea>
             </div>
 
             <div class="mb-3">
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" aria-label="Default select example" formControlName="domain" required>
                     <option value="">Please Select Domain</option>
                     <option value="erp">ERP</option>
                     <option value="crm">CRM</option>
@@ -26,12 +26,23 @@
             </div>
 
             <div class="mb-3">
-                <button type="button" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-primary" [disabled]="!profileForm.valid" (click)="submit()">Submit</button>
             </div>
         </div>
 
-        <div class="col-md-6">
-            <h1>Object should be print here</h1>
+        <div class="col-md-6" *ngIf="hasSubmitted">
+            <div>
+              name:{{profileOutput.name}}
+            </div>
+            <div>
+              email:{{profileOutput.email}}
+            </div>
+            <div>
+              bio:{{profileOutput.bio}}
+            </div>
+            <div>
+              domain:{{profileOutput.domain}}
+            </div>
         </div>
     </div>
 
