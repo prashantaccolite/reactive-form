@@ -1,8 +1,9 @@
-<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
 
 <div class="container">
     <div class="row">
         <div class="col-md-6">
+            <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
             <div class="mb-3 mt-5">
                 <label for="name" class="form-label">Name</label>
                 <small class="error" [class.d-none]="name?.valid || name?.untouched">Name is a required field</small>
@@ -39,9 +40,10 @@
             <div class="mb-3">
                 <button type="submit" [disabled]="profileForm.invalid" class="btn btn-primary">Submit</button>
             </div>
+        </form>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6 mt-4">
             <h4>Form Submission Details!</h4>
             <div *ngFor="let d of data | keyvalue">
                 {{d.key}} : {{d.value}}
@@ -50,5 +52,3 @@
     </div>
 
 </div>
-
-</form>
