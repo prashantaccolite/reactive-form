@@ -1,37 +1,50 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <div class="mb-3">
-                <label for="fname" class="form-label">Name</label>
-                <input type="text" class="form-control" id="fname" placeholder="">
-            </div>
+            <form [formGroup]="vendorActiveForm" (ngSubmit)="onSubmit()">
+                <div class="mb-3 individualInputBox">
+                    <label for="fname" class="form-label">Name</label>
+                    <div class="errors" *ngIf="name?.errors?.['required'] && (name?.dirty || name?.touched)" >Name is required</div>
+                    <input type="text" class="{{(name?.errors?.['required'] && name?.touched) ? 'form-control error' : 'form-control'}}" id="fname" placeholder="" formControlName="name" required>
+                </div>
 
-            <div class="mb-3">
-                <label for="username" class="form-label">Email</label>
-                <input type="email" class="form-control" id="username" placeholder="">
-            </div>
+                <div class="mb-3 individualInputBox">
+                    <label for="username" class="form-label">Email</label>
+                    <div class="errors" *ngIf="email?.errors?.['required'] && (email?.dirty || email?.touched)">Email is required</div>
+                    <input type="email" class="{{(email?.errors?.['required'] && email?.touched) ? 'form-control error' : 'form-control'}}" id="username" placeholder="" formControlName="email">
+                </div>
 
-            <div class="mb-3">
-                <label for="bio" class="form-label">Bio</label>
-                <textarea class="form-control" id="bio" rows="3"></textarea>
-            </div>
 
-            <div class="mb-3">
-                <select class="form-select" aria-label="Default select example">
-                    <option value="">Please Select Domain</option>
-                    <option value="erp">ERP</option>
-                    <option value="crm">CRM</option>
-                    <option value="ecommerce">E-commerce</option>
-                </select>
-            </div>
+                <div class="mb-3 individualInputBox">
+                    <label for="bio" class="form-label">Bio</label>
+                    <div class="errors" *ngIf="bio?.errors?.['required'] && (bio?.dirty || bio?.touched)">Bio is required</div>
+                    <textarea class="{{(bio?.errors?.['required'] && bio?.touched) ? 'form-control error' : 'form-control'}}" id="bio" rows="3" formControlName="bio"></textarea>
+                </div>
 
-            <div class="mb-3">
-                <button type="button" class="btn btn-primary">Submit</button>
-            </div>
-        </div>
 
-        <div class="col-md-6">
-            <h1>Object should be print here</h1>
+                <div class="mb-3 individualInputBox">
+                    <div class="errors" *ngIf="domain?.errors?.['required'] && (domain?.dirty || domain?.touched)">Domain is required</div>
+                    <select class="{{(domain?.errors?.['required'] && domain?.touched) ? 'form-select error' : 'form-select'}}" aria-label="Default select example"  formControlName="domain">
+                        <option value="">Please Select Domain</option>
+                        <option value="erp">ERP</option>
+                        <option value="crm">CRM</option>
+                        <option value="ecommerce">E-commerce</option>
+                    </select>
+                </div>
+
+
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary" [disabled]="!vendorActiveForm.valid">Submit</button>
+                </div>
+            </form>
+        </div> 
+
+        <div class="col-md-6" id="vendorDetails">
+            <!-- <div>Name: {{vendorActiveForm.get("name")?.value}}</div>
+            <div>Email: {{vendorActiveForm.get("email")?.value}}</div>
+            <div>Bio: {{vendorActiveForm.get("bio")?.value}}</div>
+            <div>Domain: {{vendorActiveForm.get("domain")?.value}}</div>
+            <div>Status: {{vendorActiveForm.status}}</div> -->
         </div>
     </div>
 

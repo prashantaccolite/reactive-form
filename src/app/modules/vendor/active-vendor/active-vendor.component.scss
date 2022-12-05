@@ -1,0 +1,18 @@
+.form-control.error{
+    border: 2px solid red;
+}
+
+.form-select.error{
+    border: 2px solid red;
+    color: red;
+}
+
+.errors{
+    color: red;
+    align-self: flex-end;
+}
+
+.individualInputBox{
+    display: flex;
+    flex-direction: column;
+}
