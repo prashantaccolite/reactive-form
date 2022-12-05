@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ROUTING } from '../../shared/constants/routing.constant';
@@ -10,7 +11,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routes), ReactiveFormsModule, FormsModule],
   exports: [RouterModule]
 })
 export class VendorRoutingModule { }
