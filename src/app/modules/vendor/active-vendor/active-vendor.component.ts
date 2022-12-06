@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {  FormGroup } from '@angular/forms';
+import { FormControl } from '@angular/forms';
+import { FormBuilder,Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-active-vendor',
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActiveVendorComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fb : FormBuilder){}
 
+  activeVendorForm = this.fb.group({
+    Name : ['',Validators.required],
+    Email : ['',[Validators.required, Validators.email]],
+    Bio :['',Validators.required],
+    Domain : ['',Validators.required] 
+  })
+
+data : any;
   ngOnInit(): void {
+  }
+
+  onSubmit(){
+    this.data = this.activeVendorForm.value;
+    this.activeVendorForm.reset;
   }
 
 }
