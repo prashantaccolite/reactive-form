@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, Form, FormControl, FormGroup } from '@angular/forms';
 import { map } from 'rxjs';
 
 @Component({
@@ -11,25 +11,37 @@ export class ActiveVendorComponent implements OnInit {
 
   profileOutput:any;
   hasSubmitted=false;
+  FormShowsError= new Map<String, boolean>();
   profileForm = new FormGroup({
-    name: new FormControl(''),
-    email: new FormControl(''),
-    bio: new FormControl(''),
-    domain: new FormControl('')
+    name: new FormControl(),
+    email: new FormControl(),
+    bio: new FormControl(),
+    domain: new FormControl()
   })
-  constructor() { }
-
   submit() {
-    console.warn(this.profileForm.value);
     this.profileOutput = this.profileForm.value;
     this.hasSubmitted = true;
   }
 
   ngOnInit(): void {
+    this.FormShowsError.set("name",false);
+    this.FormShowsError.set("email",false);
+    this.FormShowsError.set("bio",false);
+    this.FormShowsError.set("domain",false);
+
+
   }
 
-  FocusOut(formControl:any) {
-      console.log(formControl)
+  ShowErrorIfNullableInvalid(formName:any) {
+      let formToCheck = this.profileForm.get(formName) as AbstractControl;
+      if (formToCheck.invalid){this.FormShowsError.set(formName,true)}
+      else {this.FormShowsError.set(formName,false)}
+      console.log(this.FormShowsError)
   }
 
+  ShowErrorFor(formName:string) {
+      console.log(formName)
+
+
+  }
 }
