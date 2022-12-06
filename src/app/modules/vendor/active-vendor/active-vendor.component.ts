@@ -17,8 +17,8 @@ export class ActiveVendorComponent implements OnInit {
   }
 
   profileForm = this.fb.group({
-    name : ['Prantik', Validators.compose([Validators.required,Validators.email])], 
-    email : ['', Validators.required],
+    name : ['Prantik', Validators.required], 
+    email : ['',[Validators.required,Validators.email]],
     bio : ['', Validators.required],
     domain : ['', Validators.required]
   })
